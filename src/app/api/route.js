@@ -9,7 +9,7 @@ const dataDirectory = path.join(process.cwd(), "public");
 export async function GET() {
   const soundNames = fs.readdirSync(path.join(dataDirectory, "sounds"));
   const imageNames = fs.readdirSync(path.join(dataDirectory, "images"));
-  const labels = soundNames.map((el) => el.split(".")[0]);
+  const labels = soundNames.map((el) => _.capitalize(el.split(".")[0]));
   const data = _.zipWith(
     labels,
     soundNames,
