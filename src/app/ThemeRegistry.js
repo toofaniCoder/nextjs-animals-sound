@@ -16,6 +16,9 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
+  palette:{
+    mode:"dark"
+  }
 });
 
 // This implementation is from emotion-js
