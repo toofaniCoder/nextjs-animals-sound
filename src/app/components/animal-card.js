@@ -1,11 +1,12 @@
 "use client";
-import { useRef } from "react";
+import {  useRef, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import AudioPlayer from "./audio-player";
 
+import LinearProgress from "@mui/material/LinearProgress";
 const cardActionStyle = {
   position: "relative",
   display: "flex",
@@ -24,6 +25,7 @@ const labelStyle = {
 };
 
 export default function AnimalCard({ label, soundPath, imagePath }) {
+  const [progress, setProgress] = useState(0);
   const audioRef = useRef(null);
   const play = () => {
     if (audioRef.current.paused) {
@@ -35,10 +37,11 @@ export default function AnimalCard({ label, soundPath, imagePath }) {
   return (
     <Card>
       <CardActionArea onClick={play} sx={cardActionStyle}>
-        <AudioPlayer ref={audioRef} src={`/sounds/${soundPath}`} />
+        <AudioPlayer setProgress={setProgress} ref={audioRef} src={`/sounds/${soundPath}`} />
         <Image src={`/images/${imagePath}`} width={150} height={150} />
         <Typography sx={labelStyle}>{label}</Typography>
       </CardActionArea>
+      <LinearProgress sx={{ height: 5 }} variant="determinate" value={progress} />
     </Card>
   );
 }

@@ -7,7 +7,7 @@ export default async function Home() {
   // console.log(data);
   return (
     <main>
-      <Grid spacing={2} sx={{ py: [2,4] }} container>
+      <Grid spacing={2} sx={{ py: 2 }} container>
         {data.data.map((animal) => (
           <Grid item xs={12} sm={3}>
             <AnimalCard {...animal} />
