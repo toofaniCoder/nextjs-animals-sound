@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import ThemeRegistry from './ThemeRegistry'
 
 export const metadata = {
@@ -11,7 +12,9 @@ export default function RootLayout(props) {
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
+        <ThemeRegistry options={{ key: "mui" }}>
+          <Container>{children}</Container>
+        </ThemeRegistry>
       </body>
     </html>
   );
