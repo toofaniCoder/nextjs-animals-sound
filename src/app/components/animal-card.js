@@ -1,7 +1,10 @@
+"use client";
+import { useRef } from "react";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import AudioPlayer from "./audio-player";
 
 const cardActionStyle = {
   position: "relative",
@@ -21,9 +24,18 @@ const labelStyle = {
 };
 
 export default function AnimalCard({ label, soundPath, imagePath }) {
+  const audioRef = useRef(null);
+  const play = () => {
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  };
   return (
     <Card>
-      <CardActionArea sx={cardActionStyle}>
+      <CardActionArea onClick={play} sx={cardActionStyle}>
+        <AudioPlayer ref={audioRef} src={`/sounds/${soundPath}`} />
         <Image src={`/images/${imagePath}`} width={150} height={150} />
         <Typography sx={labelStyle}>{label}</Typography>
       </CardActionArea>
